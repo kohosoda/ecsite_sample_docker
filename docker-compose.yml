@@ -1,0 +1,24 @@
+version: '3'
+services:
+  # laravel
+  app:
+    build: ./docker
+    ports:
+      - 80:80
+    volumes:
+      - ./laravel:/var/www/laravel:delegated
+    working_dir: /var/www/laravel
+
+  # MySQl
+  mysql:
+    image: mysql:8.0
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: laravel_ecsite
+      MYSQL_USER: ec_user
+      MYSQL_PASSWORD: Qx4EUB6b3v0Jd45O
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./docker/db/data:/var/lib/mysql:delegated
+

@@ -1,0 +1,29 @@
++--------+----------+------------------------+------------------+------------------------------------------------------------------------+--------------+
+| Domain | Method   | URI                    | Name             | Action                                                                 | Middleware   |
++--------+----------+------------------------+------------------+------------------------------------------------------------------------+--------------+
+|        | GET|HEAD | /                      | item.index       | App\Http\Controllers\ItemController@index                              | web          |
+|        | GET|HEAD | api/user               |                  | Closure                                                                | api,auth:api |
+|        | GET|HEAD | cartitem               | cart.index       | App\Http\Controllers\CartItemController@index                          | web          |
+|        | POST     | cartitem               | cart.store       | App\Http\Controllers\CartItemController@store                          | web          |
+|        | PUT      | cartitem/{cartItem}    | cart.update      | App\Http\Controllers\CartItemController@update                         | web          |
+|        | DELETE   | cartitem/{cartItem}    | cart.destroy     | App\Http\Controllers\CartItemController@destroy                        | web          |
+|        | GET|HEAD | item/{item}            | item.show        | App\Http\Controllers\ItemController@show                               | web          |
+|        | PUT      | item/{item}/like       | item.like        | App\Http\Controllers\ItemController@like                               | web          |
+|        | DELETE   | item/{item}/like       | item.unlike      | App\Http\Controllers\ItemController@unlike                             | web          |
+|        | GET|HEAD | login                  | login            | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest    |
+|        | POST     | login                  |                  | App\Http\Controllers\Auth\LoginController@login                        | web,guest    |
+|        | POST     | logout                 | logout           | App\Http\Controllers\Auth\LoginController@logout                       | web          |
+|        | GET|HEAD | mypage                 | mypage.show      | App\Http\Controllers\UserController@show                               | web          |
+|        | POST     | mypage                 | mypage.store     | App\Http\Controllers\UserController@store                              | web          |
+|        | GET|HEAD | mypage/history         | mypage.history   | App\Http\Controllers\UserController@history                            | web          |
+|        | GET|HEAD | mypage/like            | mypage.like      | App\Http\Controllers\UserController@like                               | web          |
+|        | GET|HEAD | password/confirm       | password.confirm | App\Http\Controllers\Auth\ConfirmPasswordController@showConfirmForm    | web,auth     |
+|        | POST     | password/confirm       |                  | App\Http\Controllers\Auth\ConfirmPasswordController@confirm            | web,auth     |
+|        | POST     | password/email         | password.email   | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  | web          |
+|        | GET|HEAD | password/reset         | password.request | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm | web          |
+|        | POST     | password/reset         | password.update  | App\Http\Controllers\Auth\ResetPasswordController@reset                | web          |
+|        | GET|HEAD | password/reset/{token} | password.reset   | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web          |
+|        | GET|HEAD | register               | register         | App\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web,guest    |
+|        | POST     | register               |                  | App\Http\Controllers\Auth\RegisterController@register                  | web,guest    |
+|        | POST     | solditem               | soldItem.store   | App\Http\Controllers\SoldItemController@store                          | web          |
++--------+----------+------------------------+------------------+------------------------------------------------------------------------+--------------+
