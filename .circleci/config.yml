@@ -13,7 +13,10 @@ jobs:
           command: docker-compose exec app composer install --prefer-dist
       - run:
           name: npm install
-          command: docker-compose exec app npm install && npm run dev
+          command: docker-compose exec app npm install
+      - run:
+          name: npm run
+          command: docker-compose exec app npm run dev
       - run:
           name: change permission
           command: docker-compose exec app chmod -R 777 storage vendor
