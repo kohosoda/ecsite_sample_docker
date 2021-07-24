@@ -2,28 +2,21 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/php:8.0.0-node-browsers
-      - image: circleci/mysql:5.7.33
-    working_directory: ~/ci-demo
+      - image: circleci/classic:edg
     steps:
       - checkout
       - run:
-          name: Update apt-get
-          command: sudo apt-get update
+          name: start docker container
+          command: docker-compose up -d
       - run:
-          name: Docker php extensions install
-          command: sudo docker-php-ext-install pdo_mysql
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
-            - v1-dependencies-
+          name: composer install
+          command: docker-compose exec app composer install --prefer-dist
       - run:
-          name: Install PHP libraries
-          command: composer install -n --prefer-dist
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
+          name: npm install
+          command: docker-compose exec app npm install && npm run dev
       - run:
-          name: Run PHPUnit
-          command: vendor/bin/phpunit
+          name: change permission
+          command: docker-compose exec app chmod -R 777 storage vendor
+      - run:
+          name: run PHPUnitTest
+          command: docker-compose exec app vendor/bin/phpunit
